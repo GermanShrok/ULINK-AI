@@ -1,0 +1,10 @@
+# Add .env to .gitignore to prevent it from being tracked by Git
+.env
+
+# Exclude virtual environment files and folders
+venv/
+__pycache__/
+*.pyc
+
+# Exclude large dependency files
+*.dylib
