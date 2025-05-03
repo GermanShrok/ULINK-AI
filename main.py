@@ -9,6 +9,8 @@ from alpha_fetch import fetch_alpha_data
 from signals import add_sma_crossover, add_rsi, add_bollinger_bands
 from agent_functions import functions
 from openai import OpenAI
+import openai
+from openai import OpenAI
 import sys    
 
 st.set_page_config(page_title="Agentic Finance App", layout="wide")
@@ -19,6 +21,9 @@ st.title("🤖 Agentic AI for Your Stock")
 # ─── INITIALIZE OPENAI CLIENT ───────────────────────────────────────────────
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))  #  Use OpenAI class
+
+# Ensure the OpenAI API key is set from the .env file
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # ─── HANDLE ANY PENDING PARAMETER CHANGES FROM AGENT ────────────────────────
 if "pending_fetch_params" in st.session_state:
@@ -38,9 +43,6 @@ st.markdown("""
 # ─── LOGGING SETUP ──────────────────────────────────────────────────────────
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger(__name__)
-
-# ─── OPENAI API KEY SETUP not required ───────────────────────────────────────────────────
-#openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # ─── INITIALIZE SESSION STATE ───────────────────────────────────────────────
 defaults = {
@@ -255,3 +257,4 @@ st.subheader("📝 Signal Summary")
 st.dataframe(df_summary, use_container_width=True)
 
 st.markdown(f"> **Narrative summary:** {narrative}")
+#new info#
